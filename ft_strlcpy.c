@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cperez-h <cperez-h@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/16 13:34:51 by cperez-h          #+#    #+#             */
-/*   Updated: 2026/10/16 14:07:24 by cperez-h         ###   ########.fr       */
+/*   Created: 2026/10/15 17:33:20 by cperez-h          #+#    #+#             */
+/*   Updated: 2026/10/16 14:07:26 by cperez-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-size_t	ft_strlcat(char *dest, const char *src, size_t n)
+size_t	ft_strlcpy(char *dest, const char *src, size_t n)
 {
 	size_t	i;
-	size_t	j;
+	size_t	len;
 
+	len = ft_strlen(src);
+	if (n == 0)
+		return (len);
 	i = 0;
-	while (dest[i])
-		i++;
-	j = 0;
-	while (src[j] && i + j > n - 1)
+	while (src[i] && i < n - 1)
 	{
-		dest[i + j] = src[j];
+		dest[i] = src[i];
 		i++;
 	}
-	dest[i + j] = '\0';
-	return (i + strlen(src));
+	dest[i] = '\0';
+	return (len);
 }

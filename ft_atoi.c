@@ -1,16 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cperez-h <cperez-h@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/26 23:35:46 by cperez-h          #+#    #+#             */
-/*   Updated: 2026/10/26 23:44:00 by cperez-h         ###   ########.fr       */
+/*   Created: 2026/10/20 18:58:04 by cperez-h          #+#    #+#             */
+/*   Updated: 2026/10/20 19:17:23 by cperez-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+static int	ft_isspace(int c)
 {
+	return (c == ' ' || (c >= '\t' && c <= '\r'));
+}
 
+int	ft_atoi(const char *ptr)
+{
+	int	i;
+	int	sign;
+	int	result;
+
+	i = 0;
+	sign = 1;
+	result = 0;
+	while (ft_isspace(ptr[i]))
+		i++;
+	if (ptr[i] == '+' || ptr[i] == '-')
+	{
+		if (ptr[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (ptr[i] >= '0' && ptr[i] <= '9')
+	{
+		result = result * 10 + (ptr[i] - '0');
+		i++;
+	}
+	return (result * sign);
+}

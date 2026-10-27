@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cperez-h <cperez-h@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/22 06:23:51 by cperez-h          #+#    #+#             */
-/*   Updated: 2026/10/22 06:46:26 by cperez-h         ###   ########.fr       */
+/*   Created: 2026/10/20 19:25:33 by cperez-h          #+#    #+#             */
+/*   Updated: 2026/10/20 19:29:31 by cperez-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+char	*ft_strdup(const char *s)
 {
 	char	*ptr;
-	size_t	size;
+	size_t	len;
 
-	if (!s1 || !set)
-		return (NULL);
-	size = ft_strlen(s1) - ft_strlen(set);
-	ptr = malloc(sizeof(char) * (size + 1));
+	len = ft_strlen(s) + 1;
+	ptr = malloc(len);
 	if (!ptr)
 		return (NULL);
-	while (*s1)
-	{
-		if (*s1 != *set)
-		{
-			*ptr = *s1;
-			s1++;
-			ptr++;
-		}
-		else if (*s1 == *set)
-			s1++;
-	}
+	ft_memcpy(ptr, s, len);
 	return (ptr);
 }
